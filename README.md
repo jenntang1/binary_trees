@@ -1,1 +1,1 @@
-# binary_trees
+Imagine a world with only two types of trees.
