@@ -6,7 +6,7 @@
  * Description: 10. Depth
  * Return: see below
  * 1. upon success, return depth
- * 2. upon fail, return NULL
+ * 2. upon fail, return 0
  */
 size_t binary_tree_depth(const binary_tree_t *tree)
 {
