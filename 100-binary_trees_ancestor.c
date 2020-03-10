@@ -1,4 +1,6 @@
 #include "binary_trees.h"
+binary_tree_t *recurse_for_ancestor(binary_tree_t *root,
+	const binary_tree_t *first, const binary_tree_t *second);
 /**
  * binary_trees_ancestor - find lowest common ancestor
  * @first: first node to find ancestor for
@@ -6,17 +8,38 @@
  *
  * Return: pointer to lowest common ancestor; NULL on failure
  */
-binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second)
+binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
+	const binary_tree_t *second)
 {
-	binary_tree_t *ancestor = NULL;
+	binary_tree_t *root = NULL;
 
-	if (first != NULL && second != NULL)
-	{
-		binary_trees_ancestor(first->parent, second);
-		binary_trees_ancestor(first, second->parent);
-	}
-	if (first == second)
-		ancestor = first;
+	/* find root node */
+	root = (binary_tree_t *)first;
+	while (root->parent != NULL)
+		root = root->parent;
 
-	return ancestor;
+	/* perform lowest common anscestor detection */
+	return (recurse_for_ancestor(root, first, second));
+}
+
+binary_tree_t *recurse_for_ancestor(binary_tree_t *root,
+	const binary_tree_t *first, const binary_tree_t *second)
+{
+	binary_tree_t *leftLCA = NULL, *rightLCA = NULL;
+
+	if (root == NULL)
+		return (NULL);
+
+	if (root == first || root == second)
+		return (root);
+
+	leftLCA = recurse_for_ancestor(root->left, first, second);
+	rightLCA = recurse_for_ancestor(root->right, first, second);
+
+	if (leftLCA && rightLCA)
+		return (root);
+
+	if (leftLCA != NULL)
+		return (leftLCA);
+	return (rightLCA);
 }
