@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-
 /**
  * binary_tree_node - function creates a binary tree node
  * @parent: pointer to the parent node
@@ -25,30 +24,7 @@ binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 	new_node->n = value;
 	new_node->left = NULL;
 	new_node->right = NULL;
-	new_node->parent = NULL;
+	new_node->parent = parent;
 
-	/* Assign new node as parent node */
-	if (parent == NULL)
-	{
-		parent = new_node;
-		return (new_node);
-	}
-
-	/* Create left child */
-	if (parent->left == NULL)
-	{
-		parent->left = new_node;
-		new_node->parent = parent;
-		return (new_node);
-	}
-
-	/* Create right child */
-	if (parent->right == NULL)
-	{
-		parent->right = new_node;
-		new_node->parent = parent;
-		return (new_node);
-	}
-
-	return (NULL);
+	return (new_node);
 }

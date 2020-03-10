@@ -21,10 +21,10 @@ int binary_tree_is_full(const binary_tree_t *tree)
  */
 int recurse_full(const binary_tree_t *tree)
 {
-	if (!tree->left && !tree->right)
-		return (1);
-	else if (!tree)
+	if (!tree)
 		return (0);
+	else if (!tree->left && !tree->right)
+		return (1);
 	else
 		return (recurse_full(tree->left) * recurse_full(tree->right));
 }

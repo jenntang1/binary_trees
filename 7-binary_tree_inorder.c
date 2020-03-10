@@ -10,10 +10,10 @@ void binary_tree_inorder(const binary_tree_t *tree, void (*func)(int))
 		return;
 
 	/* recurse leftwards */
-	binary_tree_inorder(tree->left);
-
-	/* recurse rightward */
-	binary_tree_inorder(tree->right);
+	binary_tree_inorder(tree->left, func);
 
 	func(tree->n);
+
+	/* recurse rightward */
+	binary_tree_inorder(tree->right, func);
 }
