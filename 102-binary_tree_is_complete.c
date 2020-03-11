@@ -1,53 +1,54 @@
 #include "binary_trees.h"
-size_t binary_tree_height(const binary_tree_t *tree);
-size_t recurse_for_height(const binary_tree_t *tree);
+int recurse_for_complete(const binary_tree_t *tree, size_t index, size_t size);
+size_t binary_tree_size(const binary_tree_t *tree);
 /**
  * binary_tree_is_complete - check if tree is complete
- * @tree: tree to check
+ * @tree: pointer to root of tree
  *
  * Return: 1 if complete; 0 if incomplete
  */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
-	size_t height;
-
 	if (!tree)
 		return (0);
 
-	/* determine height */
-	height = binary_tree_height(tree);
-
-	
-
+	return (recurse_for_complete(tree, 0, binary_tree_size(tree)));
 }
 /**
- * binary_tree_height - measure height of tree
- * @tree: tree to measure
+ * recurse_for_complete - use array indexing to track node position
+ * @tree: pointer to root of tree
+ * @index: index of node in conceptual array
+ * @size: number of nodes in tree
  *
- * Return: height
+ * Return: 1 if complete; 0 if incomplete
  */
-size_t binary_tree_height(const binary_tree_t *tree)
+int recurse_for_complete(const binary_tree_t *tree, size_t index, size_t size)
 {
-	return (recurse_for_height(tree) - 1);
-}
-/**
- * recurse_for_height - measure height
- * @tree: tree to measure
- *
- * Return: height
- */
-size_t recurse_for_height(const binary_tree_t *tree)
-{
-	size_t heightR, heightL;
+	int left, right;
 
 	if (!tree)
+		return (1);
+
+	if (index >= size)
 		return (0);
 
-	heightL = recurse_for_height(tree->left);
-	heightR = recurse_for_height(tree->right);
+	left = recurse_for_complete(tree->left, (2 * index) + 1, size);
+	right = recurse_for_complete(tree->right, (2 * index) + 2, size);
 
-	if (heightL > heightR)
-		return (heightL + 1);
+	if (left == 1 && right == 1)
+		return (1);
 	else
-		return (heightR + 1);
+		return (0);
+}
+/**
+ * binary_tree_size - measure size of binary tree
+ * @tree: tree to measure
+ *
+ * Return: size
+ */
+size_t binary_tree_size(const binary_tree_t *tree)
+{
+	if (tree)
+		return (binary_tree_size(tree->left) + 1 + binary_tree_size(tree->right));
+	return (0);
 }
