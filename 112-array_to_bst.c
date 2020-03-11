@@ -11,6 +11,10 @@ bst_t *array_to_bst(int *array, size_t size)
 	bst_t *tree = NULL;
 	size_t i = 0;
 
+	/* if there's no array */
+	if (array == NULL)
+		return (NULL);
+
 	/* create tree root */
 	tree = bst_insert(&tree, array[i++]);
 
