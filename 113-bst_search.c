@@ -20,7 +20,7 @@ bst_t *bst_search(const bst_t *tree, int value)
 	/* if the value is in the root node */
 	if (tree->n == value)
 	{
-		return (tree);
+		return ((bst_t *)tree);
 	}
 
 	/* first, search for value on the left subtree */
