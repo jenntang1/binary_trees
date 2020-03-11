@@ -27,7 +27,7 @@ binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 
 	/* if there's no parent */
 	if (parent == NULL)
-		return (parent);
+		return (NULL);
 
 	/* if there's no right child */
 	if (parent->right == NULL)
