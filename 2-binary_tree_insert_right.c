@@ -11,23 +11,25 @@
  */
 binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 {
-	/* Declare pointer to right child */
+	/* declare pointer to right child */
 	binary_tree_t *right_child = NULL;
 
-	/* Allocate memory for right child but if fail, return NULL */
+	/* allocate memory for right child but if fail, return NULL */
 	right_child = malloc(sizeof(binary_tree_t));
 	if (right_child == NULL)
-	{
 		return (NULL);
-	}
 
-	/* Assign value or NULL to right child */
+	/* assign value or NULL to right child */
 	right_child->n = value;
 	right_child->left = NULL;
 	right_child->right = NULL;
 	right_child->parent = NULL;
 
-	/* If there's no right child */
+	/* if there's no parent */
+	if (parent == NULL)
+		return (parent);
+
+	/* if there's no right child */
 	if (parent->right == NULL)
 	{
 		parent->right = right_child;
@@ -35,7 +37,7 @@ binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 		return (right_child);
 	}
 
-	/* If there's already a right child */
+	/* if there's already a right child */
 	if (parent->right != NULL)
 	{
 		right_child->parent = parent;
