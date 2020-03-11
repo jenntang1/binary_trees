@@ -24,13 +24,20 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	/* perform lowest common anscestor detection */
 	return (recurse_for_ancestor(root, first, second));
 }
-
+/**
+ * recurse_for_ancestor - recursive component to find LCA
+ * @root: pointer to root of tree
+ * @first: pointer to one child
+ * @second: pointer to other child
+ *
+ * Return: pointer to LCA
+ */
 binary_tree_t *recurse_for_ancestor(binary_tree_t *root,
 	const binary_tree_t *first, const binary_tree_t *second)
 {
 	binary_tree_t *leftLCA = NULL, *rightLCA = NULL;
 
-	if (root == NULL)
+	if (root == NULL || first == NULL || second == NULL)
 		return (NULL);
 
 	if (root == first || root == second)
