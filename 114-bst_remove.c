@@ -1,5 +1,7 @@
 #include "binary_trees.h"
 
+bst_t *minimum(bst_t *root);
+
 /**
  * bst_remove - removes a node from a BST
  * @root: pointer to the root node
@@ -11,59 +13,56 @@
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
-	/* declare and initialize pointers for child and root */
-	bst_t *child = NULL, *current = NULL;
-	
+	/* declare and initialize pointers */
+	bst_t *new = NULL, *current = NULL;
+
 	/* if there's no root node */
 	if (root == NULL)
 		return (NULL);
 
-	/* if the value is in the root node */
-	if (root->parent == NULL)
-	{
-		if (root->left == NULL)
-		{
-			child = root->right;
-			free(root);
-			return (child);
-		}
-		if (root->right == NULL)
-		{
-			child = root->left;
-			free(root);
-			return (child);
-		}
-	}
-
-	/* first, search for value on the left subtree */
-	/* next, search for value on the right subtree */
-	/* last, search if node has no or one child */
+	/* first search for value on the left subtree */
+	/* then search for value on the right subtree */
 	if (root->n > value)
 		root->left = bst_remove(root->left, value);
 	else if (root->n < value)
 		root->right = bst_remove(root->right, value);
 	else
 	{
+		/* if there's no child or one right child */
 		if (root->left == NULL)
 		{
-			child = root->right;
+			new = root->right;
 			free(root);
-			return (child);
+			return (new);
 		}
-		if (root->right == NULL)
+		/* if there's no child or one left child */
+		else if (root->right == NULL)
 		{
-			child = root->left;
+			new = root->left;
 			free(root);
-			return (child);
+			return (new);
 		}
+		/* if there's two children */
+		current = minimum(root->right);
+		root->n = current->n;
+		root->right = bst_remove(root->right, current->n);
 	}
-
-	current = root;
-	while ((current) && (current->right != NULL))
-	{
-		current = current->right;
-	}
-	root->n = current->n;
-	root->right = bst_remove(root->right, current->n);
 	return (root);
+}
+
+/**
+ * minimum - searches for minimum value in BST
+ * @root: pointer to root node
+ * Description: search in left subtree only
+ * Return: minimum value
+ */
+bst_t *minimum(bst_t *root)
+{
+	bst_t *current = root;
+
+	while ((current) && (current->left))
+	{
+		current = current->left;
+	}
+	return (current);
 }
