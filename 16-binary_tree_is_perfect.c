@@ -49,6 +49,9 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
+	if (!tree)
+		return (0);
+
 	return (recurse_for_height(tree) - 1);
 }
 
