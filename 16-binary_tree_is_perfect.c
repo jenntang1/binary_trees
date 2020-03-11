@@ -18,7 +18,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
 	/* check if all trees/subtrees have balance factor of 0 */
 	if (recurse_for_balance(tree) == 0)
-			return (1);
+		return (1);
 	return (0);
 }
 /**
@@ -29,18 +29,18 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
  */
 int recurse_for_balance(const binary_tree_t *tree)
 {
-    int balFactor;
+	int balFactor;
 
-    if (!tree)
-        return (0);
+	if (!tree)
+		return (0);
 
-    /* take balance factor of every tree/subtree */
-    balFactor = binary_tree_balance(tree);
+	/* take balance factor of every tree/subtree */
+	balFactor = binary_tree_balance(tree);
 
-    if (balFactor != 0)
-        return (balFactor);
+	if (balFactor != 0)
+		return (balFactor);
 
-    return (recurse_for_balance(tree->left) || recurse_for_balance(tree->right));
+	return (recurse_for_balance(tree->left) || recurse_for_balance(tree->right));
 }
 /**
  * binary_tree_balance - measures the balance factor of a binary tree
