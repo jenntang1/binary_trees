@@ -14,6 +14,9 @@ int binary_tree_is_avl(const binary_tree_t *tree)
 {
 	int balanced;
 
+	if (!tree)
+		return (0);
+
 	/* check if tree is ordered */
 	if (recurse_for_is_bst(tree, INT_MIN, INT_MAX) == 1)
 	{
