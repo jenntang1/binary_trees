@@ -58,9 +58,7 @@ int binary_tree_balance(const binary_tree_t *tree)
 
 	/* base case */
 	if (tree == NULL)
-	{
 		return (0);
-	}
 
 	/* if given node has no balance factor */
 	if ((tree->left == NULL) && (tree->right == NULL))
