@@ -18,15 +18,11 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
 	/* base case */
 	if (tree == NULL)
-	{
 		return (0);
-	}
 
 	/* if root node has no children */
 	if ((tree->left == NULL) && (tree->right == NULL))
-	{
 		return (1);
-	}
 
 	/* calculate height of left and right subtrees */
 	left = binary_tree_height(tree->left);
@@ -34,10 +30,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
 	/* if balance is 0, then it's perfect */
 	if ((left - right) == 0)
-	{
 		return (1);
-	}
-
 	return (0);
 }
 
