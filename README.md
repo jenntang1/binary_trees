@@ -30,7 +30,7 @@ A complete binary tree is when all levels except the last level is filled and al
 ![perfectbinarytree](https://i.imgur.com/brvhWyB.png)
 
     A balanced binary tree is when the left and right subtrees of every node differs by at most one height.  
-![balancedbinarytree](https://i.imgur.com/brvhWyB.png)
+![balancedbinarytree](https://i.imgur.com/7Stwtrv.png)
 
 ## Resources ##
 0. Binary tree  
