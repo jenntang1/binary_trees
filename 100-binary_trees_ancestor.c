@@ -23,7 +23,7 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 
 	/* perform lowest common anscestor detection */
 	return (recurse_for_ancestor(root, first, second));
-}
+
 /**
  * recurse_for_ancestor - recursive component to find LCA
  * @root: pointer to root of tree
