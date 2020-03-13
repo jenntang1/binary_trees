@@ -1,5 +1,5 @@
 # Binary Trees Overview #
-The program codes contained in this repository are implementations of a binary tree, binary search tree, avl tree and binary heap.  
+The scripts contained in this repository are implementations and operations of a binary tree, binary search tree, avl tree and binary heap.  
 
 ## General ##
 0. What is a binary tree?  
